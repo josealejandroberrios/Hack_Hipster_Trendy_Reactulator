@@ -4,5 +4,5 @@ import App from './app';
 import './style.scss';
 
 ReactDOM.render(<App/>,
-  document.getElementById('root')
+  document.getElementById('Calculator')
 )

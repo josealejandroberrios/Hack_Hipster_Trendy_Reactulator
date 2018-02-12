@@ -1,0 +1,12 @@
+.Delete{
+  // background: yellow;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  .Button{
+    background: red;
+    width: 100px; 
+  }
+  .Button:nth-child(2){
+    margin-right: 0px;
+  }
+}
