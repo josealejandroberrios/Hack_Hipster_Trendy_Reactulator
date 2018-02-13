@@ -4,7 +4,7 @@ import './style.scss';
 
 export default class DeleteBoards extends React.Component {
   renderButton(i) {
-    return <Button value={i}/>;
+    return <Button value={i} onClick={() => this.props.onClick(i)}/> ;
   } 
 
   render() {
