@@ -14,43 +14,117 @@ export default class App extends React.Component {
       numberTwo: '',
       operator: '',
       operatorActive: false,
-      value: '',
+      value: '0',
       result: '',
     }
   }
-
   
-
-  handleScreenNumbers = (i) => {
+  handleScreenNumbers = (i) => { 
     const value = this.state.value + i;
-    if(this.state.operatorActive == false){
-      this.setState({
-        numberOne: value,
-        value: value});
+    if (i == '=') {
+      this.calculate();
     } else {
-      this.setState({
-        numberTwo: value,
-        value: value});
+      if (this.state.value == '0'){
+        if (i == ','){
+          if(this.state.operatorActive == false){
+            this.setState({
+              numberOne: value,
+              value: value
+            });
+          } else {
+            this.setState({
+              numberTwo: value,
+              value: value
+            });
+          }   
+        } else { 
+          if(this.state.operatorActive == false){
+            this.setState({
+              numberOne: i,
+              value: i
+            });
+          } else {
+            this.setState({
+              numberTwo: i,
+              value: i
+            });
+          }   
+        }
+      } else { 
+        if(this.state.operatorActive == false){
+          this.setState({
+            numberOne: value,
+            value: value
+          });
+        } else {
+          this.setState({
+            numberTwo: value,
+            value: value
+          });
+        }   
+      }  
     }
+  }
+    
+ 
+  calculate = () => {
+    let result = this.state.result;
+    switch(this.state.operator){
+      case '/':
+        result = parseFloat(this.state.numberOne) / parseFloat(this.state.numberTwo);
+        break;
+      case 'x':
+        result = parseFloat(this.state.numberOne) * parseFloat(this.state.numberTwo);
+        break;
+      case '+':
+        result = parseFloat(this.state.numberOne) + parseFloat(this.state.numberTwo);
+        break;
+      case '-':
+        result = parseFloat(this.state.numberOne) - parseFloat(this.state.numberTwo);
+        break;
+    }
+    this.setState({
+      value: result,
+      result: result
+
+    })
+
+
   }
 
   handleScreenClean = (i) => {
-    this.setState({
-      numberOne: '',
-      numberTwo: '',
-      operator: '',
-      operatorActive: false,
-      value: '',
-      result: '',
-    });
+    if (i == 'DEL') {
+      let value = this.state.value.slice(0, length -1);
+      if(this.state.operatorActive == false){
+        this.setState({
+          numberOne: value,
+          value: value
+        });
+      } else {
+        this.setState({
+          numberTwo: value,
+          value: value
+        });
+      } 
+    } else {
+      this.setState({
+        numberOne: '',
+        numberTwo: '',
+        operator: '',
+        operatorActive: false,
+        value: '0',
+      });
+    }
+    
   }
 
   handleScreenOperator = (i) => {
     this.setState({
       operator: i,
-      value: '',
+      value: '0',
       operatorActive: true
-    })
+    });
+    
   }
 
  
@@ -61,9 +135,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="Container">
-        <div className="CalculatorScreen">
-          <Screen displayValue = {this.state.value}/>
-        </div>
+        <Screen displayValue = {this.state.value} displayOperator = {this.state.operator}/>
         <div className="CalculatorBoard">
           <div className="Buttons">
             <DeleteBoards onClick={(i) =>this.handleScreenClean(i)}/>
