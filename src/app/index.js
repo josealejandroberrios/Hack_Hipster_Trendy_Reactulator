@@ -83,7 +83,7 @@ export default class App extends React.Component {
         result = parseFloat(this.state.numberOne) - parseFloat(this.state.numberTwo);
         break;
     }
-
+   
     let arrayTmp = {
       numberOne: this.state.numberOne,
       numberTwo: this.state.numberTwo,
@@ -93,7 +93,9 @@ export default class App extends React.Component {
     }
 
     let arrayState = this.state.record
-    arrayState.push(arrayTmp)
+
+      arrayState.push(arrayTmp)
+    
     
     this.setState({
       value: result,
@@ -140,12 +142,6 @@ export default class App extends React.Component {
     });
     
   }
-
-  
-    
- 
-
-  
 
   render() {
     

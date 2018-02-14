@@ -1,5 +1,5 @@
 .Numbers{
-  width: 65%;
+  width: 70%;
   float: left;
   margin-bottom: 5px;
   .Button{
@@ -7,5 +7,8 @@
   }
   .NumbersRow:nth-child(4) .Button:nth-child(3){
     background: orange;
+  }
+  .NumbersRow:after{
+    clear: both;
   }
 }
