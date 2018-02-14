@@ -7,8 +7,8 @@ import Record from '../calculator_board/record';
 import './style.scss';
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       numberOne: '',
       numberTwo: '',
@@ -16,6 +16,7 @@ export default class App extends React.Component {
       operatorActive: false,
       value: '0',
       result: '',
+      record: []
     }
   }
   
@@ -25,7 +26,7 @@ export default class App extends React.Component {
       this.calculate();
     } else {
       if (this.state.value == '0'){
-        if (i == ','){
+        if (i == '.'){
           if(this.state.operatorActive == false){
             this.setState({
               numberOne: value,
@@ -66,8 +67,7 @@ export default class App extends React.Component {
     }
   }
     
- 
-  calculate = () => {
+  calculate(){
     let result = this.state.result;
     switch(this.state.operator){
       case '/':
@@ -83,15 +83,28 @@ export default class App extends React.Component {
         result = parseFloat(this.state.numberOne) - parseFloat(this.state.numberTwo);
         break;
     }
+
+    let arrayTmp = {
+      numberOne: this.state.numberOne,
+      numberTwo: this.state.numberTwo,
+      operator: this.state.operator,
+      result: result,
+      id: Date.now()
+    }
+
+    let arrayState = this.state.record
+    arrayState.push(arrayTmp)
+    
     this.setState({
       value: result,
-      result: result
-
-    })
-
-
+      result: result,
+      numberOne: result,
+      record: arrayState
+    });
+    
   }
 
+ 
   handleScreenClean = (i) => {
     if (i == 'DEL') {
       let value = this.state.value.slice(0, length -1);
@@ -113,6 +126,7 @@ export default class App extends React.Component {
         operator: '',
         operatorActive: false,
         value: '0',
+        result: ''
       });
     }
     
@@ -127,12 +141,15 @@ export default class App extends React.Component {
     
   }
 
- 
   
+    
+ 
 
   
 
   render() {
+    
+    
     return (
       <div className="Container">
         <Screen displayValue = {this.state.value} displayOperator = {this.state.operator}/>
@@ -142,7 +159,7 @@ export default class App extends React.Component {
             <NumbersBoards onClick={(i) => this.handleScreenNumbers(i)}/>
             <OperatorBoards onClick={(i) => this.handleScreenOperator(i)}/>
           </div>
-          <Record />
+          <Record record ={this.state.record}/>
         </div>
       </div>
     )

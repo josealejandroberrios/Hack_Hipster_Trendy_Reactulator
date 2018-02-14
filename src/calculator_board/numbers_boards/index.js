@@ -27,7 +27,7 @@ export default class NumbersBoards extends React.Component {
         </div>
         <div className="NumbersRow">
           {this.renderButton('0')}
-          {this.renderButton(',')}
+          {this.renderButton('.')}
           {this.renderButton('=')}
         </div>
       </div>
