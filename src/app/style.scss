@@ -1,48 +1,55 @@
 .Container {
-  max-width: 95%;
-  max-height: 45%;
-  display: grid;
-  grid-template-columns: 12fr;
+  max-width: 70vw;
+  max-height: 100vh;
+  // display: grid;
+  // grid-template-columns: 12fr;
   text-align: center;
-  justify-content: center;
-  margin: 150px auto;
+  // justify-content: center;
   padding: 5%;
   background: #CBCBCB;
   border-radius: 15px;
-  position: relative;
+  margin: 3vh auto;
+
+  
 }
 
 .CalculatorScreen{
-  height: 50px;
+  max-height: 90%;
   background: #848484;
   text-align: right;
   border: 3px solid black;
   border-radius: 8px;
   display: flex;
+  justify-content: space-between;
   h1{
+    font-size: 1.6em;
     color: white;
     margin: 0px;
     padding-top: 5px;
-    height: 45px;
+    max-height: 45px;
     padding-right: 15px;
   }
     h1:nth-child(1){
-      width: 10%;
+      max-width: 10%;
+      padding-left: 5px;
+      
     }
     h1:nth-child(2){
-      width: 90%;
+      max-width: 90%;
+     
       
     }
 }
 
 .CalculatorBoard{
+  max-height: 90%;
   display: flex;
   justify-content: space-around;
 }
 
 .Buttons{
   // background: white;
-  width: 60%;
+  width: 55%;
   text-align: left;
   
 }

@@ -1,8 +1,8 @@
 .Button{
-  width: 40px;
+  width: 30px;
   height: 35px;
   color: white;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   border: inherit;
   border-radius: 8px;
   margin-right: 8px;
@@ -10,4 +10,6 @@
 }
 .Button:focus {
   outline: none;
+  opacity: 0.5;
+  background: white;
 }
